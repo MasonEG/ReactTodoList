@@ -1,9 +1,9 @@
 import React, {Component} from "react";
 import Todo from "./Todo";
 import AddItemBar from "./AddItemBar";
-import {Box, Button, CheckBox, Heading, TextInput, Grid, Grommet } from "grommet";
+import {Box, Button, CheckBox, Heading, InfiniteScroll, Grid, Grommet } from "grommet";
 import { Add, Trash } from 'grommet-icons';
-import grommet from "grommet/themes";
+import { grommet } from "grommet/themes";
 
 
 
@@ -41,14 +41,14 @@ class App extends Component {
 			<Grommet theme={grommet}>
 				<Grid
 					fill
-					rows={["1/4", "3/4"]}
-					columns={["1/4", "2/4", "1/4"]}
+					rows={["60px", "flex"]}
+					columns={["xsmall", "fit", "xsmall"]}
 					areas={[
 						{name: "header", start: [1, 0], end: [1, 0]},
 						{name: "list", start: [1, 1], end: [1, 1]}
 					]}
 				>
-				<Heading gridArea="header" margin="none" textAlign="center">Your Todo List</Heading>
+				<Heading gridArea="header" margin={{"top": "10px", "bottom": "0px"}} textAlign="center">Your Todo List</Heading>
 				<Box
 					gridArea="list"
 					alignContent="center"
@@ -58,9 +58,14 @@ class App extends Component {
 					round
 				>
 					<AddItemBar addTodo={this.addTodo} />
-					{this.state.todos.map(todo => 
+					{/* {this.state.todos.map(todo => 
 						<Todo  msg={todo.msg} isDone={todo.isDone} delete={this.removeTodo.bind(this, todo)} handleCheck={this.handleTodoCheck.bind(this, todo)}/>
-					)}
+					)} */}
+					<InfiniteScroll items={this.state.todos}>
+						{item => (
+							<Todo msg={item.msg} isDone={item.isDone} delete={this.removeTodo.bind(this, item)} handleCheck={this.handleTodoCheck.bind(this, item)} />
+						)}
+					</InfiniteScroll>
 				</Box>
 				</Grid>
 			</Grommet>

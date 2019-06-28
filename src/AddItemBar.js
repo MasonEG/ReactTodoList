@@ -30,9 +30,9 @@ class AddItemBar extends Component {
 			<Box
 				alignContent="center"
 				pad="xsmall"
-				height="65px"
+				height="55px"
 				elevation="xsmall"
-				background={{color: "light-1"}}
+				background={{color: "light-2"}}
 				round
 			>
 				<form onSubmit={this.handleSubmit}>

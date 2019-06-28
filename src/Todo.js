@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {Box, Button, CheckBox, Grid } from "grommet";
+import {Box, Button, CheckBox, Grid, Paragraph } from "grommet";
 import { Trash } from 'grommet-icons';
 
 class Todo extends Component {
@@ -7,10 +7,10 @@ class Todo extends Component {
 	render() {
 		let tag;
 		if(this.props.isDone) {
-			tag = <span><del>{this.props.msg}</del></span>
+			tag = <span><Paragraph><del>{this.props.msg}</del></Paragraph></span>
 		}
 		else {
-			tag = <span>{this.props.msg}</span>
+			tag = <span><Paragraph>{this.props.msg}</Paragraph></span>
 		}
 		return (
 			<Box
@@ -23,7 +23,7 @@ class Todo extends Component {
 				<Grid
 				fill
 				rows={["flex"]}
-				columns={["3/4", "1/4"]}
+				columns={["flex", "40px"]}
 				areas={[
 					{name: "checkbox", start:[0, 0], end: [0, 0]},
 					{name: "delete", start: [1, 0], end: [1, 0]}
